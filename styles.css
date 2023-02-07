@@ -16,7 +16,6 @@
 }
 body{
     font-size: 22px;
-    font-weight: 200;
     font-family: 'Orbitron', sans-serif;
     height: 100vh;
     display: flex;
@@ -89,7 +88,7 @@ body{
     grid-column-start: 1;
     grid-column-end: 4;
 }
-.zero{
+.num[value="0"]{
     grid-column-start: 1;
     grid-column-end: 3;
 }
