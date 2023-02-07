@@ -1,0 +1,109 @@
+:root{
+    --bg: #161B22;
+    --bg-calc: #0D1117;
+    --gray: #7e7e87;
+    --light-gray: #CCCCCC;
+    --orange: #F1A02A;
+    --white: #F6F6F6;
+    --light-orange: #FECC4C;
+    --red-orange: rgb(255, 64, 0);
+    --blue: #1983fc;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-size: 22px;
+    font-weight: 200;
+    font-family: 'Orbitron', sans-serif;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--bg);
+    user-select: none;
+}
+.header{
+    text-align: center;
+    padding: 1rem;
+    color: var(--red-orange);
+    border-bottom: 4px solid var(--red-orange);
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 6;
+}
+.calc-container{
+    display: flex;
+    flex-direction: column;
+    width: 30rem;
+    height: 40rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    background: var(--bg-calc);
+    box-shadow: 0 0 3rem 1rem black;
+}
+.screen{
+    font-size: 4rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+    padding-right: 2rem;
+    color: var(--white);
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+    flex: 2;
+    transition: all 1s ease;
+}
+.buttons-grid{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    flex: 5;
+}
+.btn{
+    opacity: 1;
+    display: flex;
+    font-size: 4rem;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    background-color: var(--light-orange);
+    cursor: pointer;
+    transition: all .5s ease;
+}
+.btn:hover{
+    opacity: .9;
+}
+.btn > * {
+    position: absolute;
+}
+.clr{
+    background-color: var(--light-gray);
+    grid-column-start: 1;
+    grid-column-end: 4;
+}
+.zero{
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+.opr{
+    background-color: var(--blue);
+}
+footer{
+    text-align: center;
+    color: var(--white);
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+a:hover{
+    color: var(--light-gray);
+}
