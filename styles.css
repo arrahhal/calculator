@@ -19,11 +19,13 @@ body{
     font-family: 'Orbitron', sans-serif;
     height: 100vh;
     display: flex;
+    gap: 1rem;
     flex-direction: column;
     background-color: var(--bg);
     user-select: none;
 }
 .header{
+    position: relative;
     text-align: center;
     padding: 1rem;
     color: var(--red-orange);
@@ -45,20 +47,33 @@ body{
     left: 50%;
     translate: -50% -50%;
     background: var(--bg-calc);
-    box-shadow: 0 0 3rem 1rem black;
+    box-shadow: 0 0 3rem 1rem rgba(47, 47, 47, 0.524);
 }
 .screen{
-    font-size: 4rem;
+    flex: 2;
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    flex-direction: column;
+    font-size: 4rem;
+    font-weight: 400;
+    font-family: 'Orbitron', sans-serif;
     padding: 1rem;
     padding-right: 2rem;
     color: var(--white);
-    font-family: 'Orbitron', sans-serif;
-    font-weight: 400;
-    flex: 2;
     transition: all 1s ease;
+}
+.screen > *{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.input-pane{
+    flex: 1;
+    font-family: 'Fira-Sans', sans-serif;
+    font-size: 2rem;
+    color: var(--light-gray);
+}
+.result-pane{
+    flex: 2;
 }
 .buttons-grid{
     display: grid;
@@ -96,6 +111,7 @@ body{
     background-color: var(--blue);
 }
 footer{
+    margin: 2rem 0;
     text-align: center;
     color: var(--white);
 }
