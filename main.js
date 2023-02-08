@@ -15,10 +15,16 @@ let firstReversed = false;
 operators.forEach(opr => opr.addEventListener('click', ()=>{
     const value = opr.getAttribute('value')
     setOperator(value);
+    addtoInputPane(value);
     firstReversed = true;
-    addToResultPane(value);
 }));
 
+clearBtn.addEventListener('click', clearScreen);
+
+function clearScreen(){
+    inputPane.textContent = '';
+    resultPane.textContent = '';
+}
 function setOperator(newOpr){
     currentOpr = newOpr;
 }
@@ -26,12 +32,10 @@ function setOperator(newOpr){
 numbers.forEach(num => num.addEventListener('click', ()=>{
     const value = num.getAttribute('value')
     inputNum(value);
-    addToResultPane(value);
+    addtoInputPane(value);
 }))
 
-
-
-function addToResultPane(newValue){
+function addtoInputPane(newValue){
     inputPane.textContent += newValue + " ";
 }
 
