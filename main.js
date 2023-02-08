@@ -2,7 +2,8 @@ const operators = document.querySelectorAll('.opr:not([value="="])');
 const clearBtn = document.querySelector('.clr')
 const comma = document.querySelector('.comma')
 const numbers = document.querySelectorAll('.num')
-const screen = document.querySelector('.screen')
+const resultPane = document.querySelector('.result-pane');
+const inputPane = document.querySelector('.input-pane');
 const equalsBtn = document.querySelector('.opr[value="="]');
 
 let firstNum = 0;
@@ -12,8 +13,10 @@ let currentOpr = '';
 let firstReversed = false;
 
 operators.forEach(opr => opr.addEventListener('click', ()=>{
-    setOperator(opr.getAttribute('value'));
+    const value = opr.getAttribute('value')
+    setOperator(value);
     firstReversed = true;
+    addToResultPane(value);
 }));
 
 function setOperator(newOpr){
@@ -21,8 +24,16 @@ function setOperator(newOpr){
 }
 
 numbers.forEach(num => num.addEventListener('click', ()=>{
-    inputNum(num.getAttribute('value'));
+    const value = num.getAttribute('value')
+    inputNum(value);
+    addToResultPane(value);
 }))
+
+
+
+function addToResultPane(newValue){
+    inputPane.textContent += newValue + " ";
+}
 
 function inputNum(newNum){
     if(!firstReversed)
@@ -33,7 +44,7 @@ function inputNum(newNum){
 equalsBtn.addEventListener('click', ()=>{
     firstReversed = false;
     calcResult();
-    console.log(result);
+    resultPane.textContent = result;
 })
 function calcResult(){
     switch(currentOpr){
