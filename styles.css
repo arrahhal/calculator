@@ -24,12 +24,38 @@ body{
     background-color: var(--bg);
     user-select: none;
 }
+@media(max-width: 1400px){
+    body{
+        font-size: 20px;
+    }
+}
+@media(max-width: 990px){
+    body{
+        font-size: 18px;
+    }
+}
+@media(max-width: 490px){
+    body{
+        font-size: 16px;
+    }
+}
 .header{
     position: relative;
     text-align: center;
     padding: 1rem;
     color: var(--red-orange);
     border-bottom: 4px solid var(--red-orange);
+}
+@media(max-width: 1400px){
+    header{
+        padding: .7rem
+    }
+}
+@media(max-width: 490px){
+    header{
+        padding: .5rem;
+        border-bottom-width: 2px;
+    }
 }
 .main{
     display: flex;
@@ -48,6 +74,18 @@ body{
     translate: -50% -50%;
     background: var(--bg-calc);
     box-shadow: 0 0 3rem 1rem rgba(47, 47, 47, 0.524);
+}
+@media(max-width: 1400px){
+    .calc-container{
+        width: 28rem;
+        height: 37rem;
+    }
+}
+@media(max-width: 490px){
+    .calc-container{
+        width: 26rem;
+        height: 35rem;
+    }
 }
 .screen{
     flex: 2;
@@ -120,6 +158,16 @@ footer{
     margin: 2rem 0;
     text-align: center;
     color: var(--white);
+}
+@media(max-width: 1400px){
+    footer{
+        margin: 1.7rem 0;
+    }
+}
+@media(max-width: 490px){
+    footer{
+        margin: 1.5rem 0;
+    }
 }
 a{
     text-decoration: none;
