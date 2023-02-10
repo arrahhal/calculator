@@ -58,7 +58,7 @@ numbers.forEach(num => num.addEventListener('click', ()=>{
 }))
 
 function addToInputPane(newValue){
-    if(inputScreen.textContent.length <= 7)
+    if(inputScreen.textContent.length <= 7 && newValue <= 99999999)
         inputScreen.textContent += newValue;
     else
         inputScreen.textContent = "out of range"
