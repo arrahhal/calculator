@@ -108,3 +108,12 @@ deleteBtn.addEventListener('click',()=>{
 function handleDeleteBtn(){
     inputScreen.textContent = inputScreen.textContent.slice(0 ,-1);
 }
+
+comma.addEventListener('click', () =>{
+    if(checkComma()) return;
+    addToInputPane(".");
+})
+
+function checkComma(){
+    return inputScreen.textContent.includes(".");
+}
