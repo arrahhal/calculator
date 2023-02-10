@@ -1,57 +1,80 @@
 const operators = document.querySelectorAll('.opr:not([value="="])');
-const clearBtn = document.querySelector('.clr')
-const comma = document.querySelector('.comma')
 const numbers = document.querySelectorAll('.num')
-const resultPane = document.querySelector('.result-pane');
-const inputPane = document.querySelector('.input-pane');
+const clearBtn = document.querySelector('.clr')
+const operationScreen = document.querySelector('.operation-screen');
+const inputScreen = document.querySelector('.input-screen');
+const comma = document.querySelector('.comma')
 const equalsBtn = document.querySelector('.opr[value="="]');
+const deleteBtn = document.querySelector('.delete')
 
 let firstNum = 0;
 let secondNum = 0;
 let result = 0;
-let currentOpr = '';
-let firstReversed = false;
-
-operators.forEach(opr => opr.addEventListener('click', ()=>{
-    const value = opr.getAttribute('value')
-    setOperator(value);
-    addtoInputPane(value);
-    firstReversed = true;
-}));
+let currentOperator = "";
+let firstNumReceived = false; // turn true after opration occur
 
 clearBtn.addEventListener('click', clearScreen);
-
 function clearScreen(){
-    inputPane.textContent = '';
-    resultPane.textContent = '';
+    inputScreen.textContent = "";
+    operationScreen.textContent = "";
+    firstNumReceived = false;
 }
+
+operators.forEach(opr => opr.addEventListener('click', ()=>{
+    const value = opr.getAttribute('value');
+    setOperator(value);
+    getNumFromScreen();
+    clearInputScreen();
+    addToOperationScreen(value);
+    firstNumReceived = true;
+}));
+
+function getNumFromScreen(){
+    if(!firstNumReceived){
+        firstNum = parseFloat(inputScreen.textContent);
+    }
+    else
+        secondNum = parseFloat(inputScreen.textContent);
+}
+
+function addToOperationScreen(opr){
+    if(opr === "=")
+        operationScreen.textContent += `${secondNum} = `;
+    else
+        operationScreen.textContent += `${firstNum} ${currentOperator} `;
+}
+
+function clearInputScreen(){
+    inputScreen.textContent = '';
+}
+
 function setOperator(newOpr){
-    currentOpr = newOpr;
+    currentOperator = newOpr;
 }
 
 numbers.forEach(num => num.addEventListener('click', ()=>{
     const value = num.getAttribute('value')
-    inputNum(value);
-    addtoInputPane(value);
+    addToInputPane(value);
 }))
 
-function addtoInputPane(newValue){
-    inputPane.textContent += newValue + " ";
+function addToInputPane(newValue){
+    if(inputScreen.textContent.length <= 7)
+        inputScreen.textContent += newValue;
+    else
+        inputScreen.textContent = "out of range"
 }
 
-function inputNum(newNum){
-    if(!firstReversed)
-        firstNum = parseFloat(newNum);
-    else
-        secondNum = parseFloat(newNum);
-}
+
 equalsBtn.addEventListener('click', ()=>{
-    firstReversed = false;
+    getNumFromScreen();
     calcResult();
-    resultPane.textContent = result;
+    addToOperationScreen(equalsBtn.getAttribute('value'));
+    addToInputPane(result);
+    firstNum = result;
 })
+
 function calcResult(){
-    switch(currentOpr){
+    switch(currentOperator){
         case '+': result = sum(firstNum, secondNum);
             break;
         case '-': result =  substract(firstNum, secondNum);
@@ -60,6 +83,7 @@ function calcResult(){
             break;
         case '/': result = divide(firstNum, secondNum);
             break;
+        default: inputScreen = 'ERROR!';
     }
 }
 
