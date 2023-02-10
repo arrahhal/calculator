@@ -99,3 +99,11 @@ function muliply(a, b){
 function divide(a, b){
     return a / b;
 }
+
+deleteBtn.addEventListener('click',()=>{
+    handleDeleteBtn();
+})
+
+function handleDeleteBtn(){
+    inputScreen.textContent = inputScreen.textContent.slice(0 ,-1);
+}
