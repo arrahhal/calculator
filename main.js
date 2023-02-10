@@ -69,6 +69,7 @@ equalsBtn.addEventListener('click', ()=>{
     getNumFromScreen();
     calcResult();
     addToOperationScreen(equalsBtn.getAttribute('value'));
+    clearInputScreen();
     addToInputPane(result);
     firstNum = result;
 })
