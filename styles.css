@@ -9,7 +9,7 @@
     --red-orange: rgb(255, 64, 0);
     --blue: #1983fc;
 }
-*{
+*, *::before, *::after{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -17,8 +17,7 @@
 body{
     font-size: 22px;
     font-family: 'Orbitron', sans-serif;
-    height: 100vh;
-    overflow-y: scroll;
+    min-height: 100vh;
     background-color: var(--bg);
     user-select: none;
 }
@@ -42,41 +41,43 @@ body{
     padding: 1rem 0;
     color: var(--red-orange);
     border-bottom: 4px solid var(--red-orange);
+    margin-bottom: 2rem;
 }
 .main{
     display: flex;
     justify-content: center;
+    margin-bottom: 2rem;
 }
 .footer{
     text-align: center;
     color: var(--white);
+    margin-bottom: 2rem;
 }
 .calc-container{
     display: flex;
     flex-direction: column;
-   margin: 2rem 0;
     background: var(--bg-calc);
     box-shadow: 0 0 3rem 1rem rgba(47, 47, 47, 0.524);
 }
 @media(min-width: 1400px){
     .calc-container{
-        width: 30rem;
-        height: 40rem;
+        width: 28rem;
+        height: 38rem;
     }
 }
-@media(min-width: 990px){
+@media(max-width: 990px){
     .calc-container{
-        width: 28rem;
+        width: 25rem;
         height: 37rem;
     }
 }
-@media(min-width: 490px){
+@media(max-width: 490px){
     .calc-container{
         width: 26rem;
         height: 36rem;
     }
 }
-@media(min-width: 390px){
+@media(max-width: 390px){
     .calc-container{
         width: 24rem;
         height: 35rem;
