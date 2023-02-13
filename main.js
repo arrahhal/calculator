@@ -101,19 +101,17 @@ function divide(a, b){
     return a / b;
 }
 
-deleteBtn.addEventListener('click',()=>{
-    handleDeleteBtn();
-})
+deleteBtn.addEventListener('click',handleDeleteBtn);
 
 function handleDeleteBtn(){
     inputScreen.textContent = inputScreen.textContent.slice(0 ,-1);
 }
 
-comma.addEventListener('click', () =>{
-    if(checkComma()) return;
-    addToInputPane(".");
-})
+comma.addEventListener('click', addPoint)
 
-function checkComma(){
-    return inputScreen.textContent.includes(".");
+function addPoint(){
+    const checkPoint = inputScreen.textContent.includes(".");
+    console.log(checkPoint);
+    if(checkPoint) return;
+    inputScreen.textContent += ".";
 }
