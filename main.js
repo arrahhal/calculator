@@ -7,98 +7,67 @@ const comma = document.querySelector('.comma')
 const equalsBtn = document.querySelector('.opr[value="="]');
 const deleteBtn = document.querySelector('.delete')
 
-let firstNum = 0;
-let secondNum = 0;
-let result = 0;
-let currentOperator = "";
-let firstNumReceived = false; // turn true after opration occur
+let firstOperand = "";
+let secondOperand = "";
+let result = "";
+let currentOperator = null;
 
 clearBtn.addEventListener('click', clearScreen);
 function clearScreen(){
     inputScreen.textContent = "";
     operationScreen.textContent = "";
-    firstNumReceived = false;
 }
 
-operators.forEach(opr => opr.addEventListener('click', ()=>{
-    const value = opr.getAttribute('value');
-    setOperator(value);
-    getNumFromScreen();
-    clearInputScreen();
-    addToOperationScreen(value);
-    firstNumReceived = true;
-}));
+operators.forEach(opr => opr.addEventListener('click',() => setOperator(opr.textContent)));
 
-function getNumFromScreen(){
-    if(!firstNumReceived){
-        firstNum = parseFloat(inputScreen.textContent);
-    }
-    else
-        secondNum = parseFloat(inputScreen.textContent);
-}
-
-function addToOperationScreen(opr){
-    if(opr === "=")
-        operationScreen.textContent += `${secondNum} = `;
-    else
-        operationScreen.textContent += `${firstNum} ${currentOperator} `;
-}
-
-function clearInputScreen(){
-    inputScreen.textContent = '';
+function getInputNum(){
+    return parseFloat(inputScreen.textContent);
 }
 
 function setOperator(newOpr){
-    currentOperator = newOpr;
+    if(newOpr === "÷") currentOperator = "/";
+    else if(newOpr === "×") currentOperator = "*";
+    else currentOperator = newOpr;
+        firstOperand = getInputNum();
+        inputScreen.textContent = "";
+        operationScreen.textContent += `${firstOperand} ${currentOperator}`
 }
 
-numbers.forEach(num => num.addEventListener('click', ()=>{
-    const value = num.getAttribute('value')
-    addToInputPane(value);
-}))
+numbers.forEach(num => num.addEventListener('click', () => addToInputPane(num.textContent)))
 
 function addToInputPane(newValue){
-    if(inputScreen.textContent.length <= 7 && newValue <= 99999999)
+    if(inputScreen.textContent.length <= 7)
         inputScreen.textContent += newValue;
     else
         inputScreen.textContent = "out of range"
 }
 
+equalsBtn.addEventListener('click', evaluate);
 
-equalsBtn.addEventListener('click', ()=>{
-    getNumFromScreen();
-    calcResult();
-    addToOperationScreen(equalsBtn.getAttribute('value'));
-    clearInputScreen();
-    addToInputPane(result);
-    firstNum = result;
-})
+function evaluate(){
+    if(inputScreen.textContent === "" || currentOperator === null) return;
+    secondOperand = getInputNum();
+    result = calcResult();
+    operationScreen.textContent += ` ${secondOperand} = `;
+    inputScreen.textContent = result;
+}
 
 function calcResult(){
+    if(currentOperator === "/" && secondOperand === 0){
+        alert("You can not divide by 0");
+        return;
+    }
     switch(currentOperator){
-        case '+': result = sum(firstNum, secondNum);
-            break;
-        case '-': result =  substract(firstNum, secondNum);
-            break;
-        case '*': result = muliply(firstNum, secondNum);
-            break;
-        case '/': result = divide(firstNum, secondNum);
-            break;
+        case '+': return firstOperand + secondOperand;
+
+        case '-': return firstOperand - secondOperand;
+
+        case '*': return firstOperand * secondOperand;
+
+        case '/': return firstOperand / secondOperand;
+
         default: inputScreen = 'ERROR!';
     }
-}
-
-function sum(a, b){
-    return a + b;
-}
-function substract(a, b){
-    return a - b;
-}
-function muliply(a, b){
-    return a * b;
-}
-function divide(a, b){
-    return a / b;
 }
 
 deleteBtn.addEventListener('click',handleDeleteBtn);
@@ -111,7 +80,6 @@ comma.addEventListener('click', addPoint)
 
 function addPoint(){
     const checkPoint = inputScreen.textContent.includes(".");
-    console.log(checkPoint);
     if(checkPoint) return;
     inputScreen.textContent += ".";
 }
