@@ -42,17 +42,17 @@ body{
     padding: 1rem 0;
     color: var(--red-orange);
     border-bottom: 4px solid var(--red-orange);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 .main{
     display: flex;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 .footer{
     text-align: center;
     color: var(--white);
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 .calculator{
     display: flex;
@@ -84,7 +84,7 @@ body{
     flex: 2;
     display: flex;
     flex-direction: column;
-    font-size: 4rem;
+    font-size: 3.7rem;
     font-weight: 400;
     padding: 1rem;
     padding-right: 2rem;
